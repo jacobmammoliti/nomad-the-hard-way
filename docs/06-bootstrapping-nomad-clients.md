@@ -15,21 +15,27 @@ Install the OS dependencies:
 ```bash
 sudo apt-get update
 
-sudo apt-get install unzip
+sudo apt-get install -y unzip jq
 ```
 
 ### Download the Client Binaries
 ```bash
+export NOMAD_VERSION=$(curl -L -s https://api.releases.hashicorp.com/v1/releases/nomad | jq -r '.[0]'.version)
+export CNI_PLUGIN_VERSION=1.1.1
+export CONTAINERD_DRIVER=0.9.3
+```
+
+```bash
 wget -q --show-progress --https-only --timestamping \
-  https://releases.hashicorp.com/nomad/1.3.0/nomad_1.3.0_linux_amd64.zip \
-  https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz \
-  https://github.com/Roblox/nomad-driver-containerd/releases/download/v0.9.3/containerd-driver
+  https://releases.hashicorp.com/nomad/"$NOMAD_VERSION"/nomad_"$NOMAD_VERSION"_linux_amd64.zip \
+  https://github.com/containernetworking/plugins/releases/download/v"$CNI_PLUGIN_VERSION"/cni-plugins-linux-amd64-v"$CNI_PLUGIN_VERSION".tgz \
+  https://github.com/Roblox/nomad-driver-containerd/releases/download/v"$CONTAINERD_DRIVER"/containerd-driver
 ```
 
 ### Install the Nomad Binary
 Unzip and install the Nomad binary:
 ```bash
-unzip nomad_1.3.0_linux_amd64.zip
+unzip nomad_"$NOMAD_VERSION"_linux_amd64.zip
 
 sudo chown root: nomad 
 
@@ -69,7 +75,7 @@ sudo chmod 600 /etc/nomad.d/tls/*
 ### Install Containderd and runc
 Use apt to install Containerd and inherently runc:
 ```bash
-sudo apt-get install containerd
+sudo apt-get install -y containerd
 ```
 
 Install containerd task driver:
@@ -86,7 +92,7 @@ sudo chmod u+x /opt/nomad/plugins/containerd-driver
 ### Configure CNI Networking
 Retrieve the container CIDR range for the current compute instance:
 ```bash
-CONTAINER_CIDR=$(curl -s -H "Metadata-Flavor: Google" \
+export CONTAINER_CIDR=$(curl -s -H "Metadata-Flavor: Google" \
   http://metadata.google.internal/computeMetadata/v1/instance/attributes/container-cidr)
 ```
 
@@ -124,7 +130,7 @@ EOF
 
 Install the CNI drivers:
 ```bash
-sudo tar -xvf cni-plugins-linux-amd64-v1.1.1.tgz -C /opt/cni/bin
+sudo tar -xvf cni-plugins-linux-amd64-v"$CNI_PLUGIN_VERSION".tgz -C /opt/cni/bin
 ```
 
 ### Configure the systemd Unit file

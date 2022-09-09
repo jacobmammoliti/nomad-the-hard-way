@@ -70,7 +70,7 @@ nomad-the-hard-way  XX.XXX.XX.XXX  EXTERNAL                    us-central1      
 
 Note the IP address for the IP SAN later:
 ```bash
-NOMAD_PUBLIC_ADDRESS=$(gcloud compute addresses list \
+export NOMAD_PUBLIC_ADDRESS=$(gcloud compute addresses list \
   --filter="name=('nomad-the-hard-way')" \
   --format="value(address)")
 ```

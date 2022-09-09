@@ -21,7 +21,7 @@ The target audience for this tutorial is someone who is interesting in learning 
 ## Cluster Details
 Nomad the Hard Way guides you through bootstrapping a highly available Nomad cluster with end-to-end encryption (Gossip and TLS) between components.
 
-* [nomad](https://github.com/hashicorp/nomad) v1.3.0
+* [nomad](https://github.com/hashicorp/nomad) v1.3.5
 * [containerd](https://github.com/containerd/containerd) v1.6.4
 * [containerd driver](https://github.com/Roblox/nomad-driver-containerd) v0.9.3
 * [cni](https://github.com/containernetworking/cni) v1.0.0

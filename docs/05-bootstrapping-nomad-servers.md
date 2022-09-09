@@ -15,19 +15,23 @@ Install the OS dependencies:
 ```bash
 sudo apt-get update
 
-sudo apt-get install unzip
+sudo apt-get install -y unzip jq
 ```
 
 ### Download and Install the Nomad Binary
+```bash
+export NOMAD_VERSION=$(curl -L -s https://api.releases.hashicorp.com/v1/releases/nomad | jq -r '.[0]'.version)
+```
+
 Download the official Nomad release binary:
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  https://releases.hashicorp.com/nomad/1.3.0/nomad_1.3.0_linux_amd64.zip
+  https://releases.hashicorp.com/nomad/"$NOMAD_VERSION"/nomad_"$NOMAD_VERSION"_linux_amd64.zip
 ```
 
 Unzip and install the Nomad binary:
 ```bash
-unzip nomad_1.3.0_linux_amd64.zip
+unzip nomad_"$NOMAD_VERSION"_linux_amd64.zip
 
 sudo chown root: nomad 
 
@@ -107,7 +111,7 @@ sudo chmod 660 /etc/nomad.d/nomad.hcl
 ### Configure the Server Configuration
 Set your Gossip key generated in the previous section:
 ```bash
-GOSSIP_KEY=<YOUR_GOSSIP_KEY>
+export GOSSIP_KEY=<YOUR_GOSSIP_KEY>
 ```
 
 Create a sever configuration file:
@@ -190,7 +194,7 @@ gcloud compute forwarding-rules create nomad-forwarding-rule \
 ```
 
 ### Verification and Bootstrap
-Back on the machine you used to create your compute instances, retrieve the `nomad-the-hard-way` static IP address:
+Retrieve the `nomad-the-hard-way` static IP address:
 ```bash
 NOMAD_PUBLIC_ADDRESS=$(gcloud compute addresses list \
   --filter="name=('nomad-the-hard-way')" \
