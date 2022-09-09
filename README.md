@@ -7,9 +7,11 @@ The main drive behind this effort was to learn something new. Hence, Nomad the H
 
 > Containerization workloads are the focus for this exercise. Refer to the [documentation](https://www.nomadproject.io/docs) to see the full capabilities of Nomad.
 
+## In Progress
+* Add integration with [GCP Compute Persistent Disk CSI driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
+
 ## On the Horizon 
 * Add lab on integration with the [dnsname](https://github.com/containers/dnsname) CNI plugin for DNS
-* Add integration with a CSI (Container Storage Interface) driver
 * Add an Ingress Gateway
 
 ## Copyright
