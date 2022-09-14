@@ -1,5 +1,5 @@
 # Provisioning Network Routes
-Container jobs scheduled to a node recieve an IP address from the node's CIDR range. At this point pods can not communicate with other pods running on different nodes due to missing network [routes]().
+Container jobs scheduled to a node recieve an IP address from the node's CIDR range. At this point pods can not communicate with other pods running on different nodes due to missing network [routes](https://cloud.google.com/vpc/docs/routes).
 
 In this lab you will create a route for each client node that maps the node's CIDR range to the node's internal IP address.
 

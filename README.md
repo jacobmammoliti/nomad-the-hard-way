@@ -7,9 +7,6 @@ The main drive behind this effort was to learn something new. Hence, Nomad the H
 
 > Containerization workloads are the focus for this exercise. Refer to the [documentation](https://www.nomadproject.io/docs) to see the full capabilities of Nomad.
 
-## In Progress
-* Add integration with [GCP Compute Persistent Disk CSI driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
-
 ## On the Horizon 
 * Add lab on integration with the [dnsname](https://github.com/containers/dnsname) CNI plugin for DNS
 * Add an Ingress Gateway
@@ -27,6 +24,7 @@ Nomad the Hard Way guides you through bootstrapping a highly available Nomad clu
 * [containerd](https://github.com/containerd/containerd) v1.6.4
 * [containerd driver](https://github.com/Roblox/nomad-driver-containerd) v0.9.3
 * [cni](https://github.com/containernetworking/cni) v1.0.0
+* [GCE Persistent Disk CSI Driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver) v1.7.3
 
 ## Labs
 The full list of labs can be found here:
@@ -38,4 +36,5 @@ The full list of labs can be found here:
 * [Bootstrapping the Nomad Clients](docs/06-bootstrapping-nomad-clients.md)
 * [Provisioning Network Routes](docs/07-network-routes.md)
 * [Smoke Test](docs/08-smoke-test.md)
-* [Clean Up](docs/09-clean-up.md)
+* [Adding Persistent Storage](docs/09-persistent-storage.md)
+* [Clean Up](docs/10-clean-up.md)

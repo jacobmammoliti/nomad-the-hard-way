@@ -109,7 +109,7 @@ TOOLBOX_ALLOC_ID=$(nomad service info -json toolbox | jq -r '.[].AllocID')
 ```
 
 ### Logs
-In this section you will be able to [retrieve job logs]().
+In this section you will be able to [retrieve job logs](https://www.nomadproject.io/docs/commands/alloc/logs).
 
 Print the `nginx` job logs:
 ```bash
@@ -177,4 +177,4 @@ Job ID  Address            Tags  Node ID   Alloc ID
 nginx   10.240.0.20:27367  []    7869771c  b2c794f5
 ```
 
-Next: [Clean Up](09-clean-up.md)
+Next: [Adding Persistent Storage](09-persistent-storage.md)
