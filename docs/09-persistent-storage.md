@@ -306,7 +306,7 @@ job "nginx-persistent-gce" {
     }
     
     service {
-      name     = "nginx"
+      name     = "nginx-persistent"
       port     = "http"
       provider = "nomad"
     }
@@ -336,6 +336,55 @@ nomad job run nginx-persistent.nomad
 Inspect the job status to ensure it is running properly:
 ```bash
 nomad job status nginx-persistent
+```
+
+> output
+```bash
+ID            = nginx-persistent
+Name          = nginx-persistent
+Submit Date   = 2022-09-13T20:01:09Z
+Type          = service
+Priority      = 50
+Datacenters   = dc1
+Namespace     = default
+Status        = running
+Periodic      = false
+Parameterized = false
+
+Summary
+Task Group        Queued  Starting  Running  Failed  Complete  Lost  Unknown
+nginx-persistent  0       0         1        0       0         0     0
+
+Allocations
+ID        Node ID   Task Group        Version  Desired  Status   Created     Modified
+7865587f  ef636df1  nginx-persistent  0        run      running  4m40s ago   4m28s ago
+```
+
+Touch a file in the directory that is attached to the volume:
+```bash
+NGINX_PERSISTENT_ALLOC_ID=$(nomad service info -json nginx-persistent | jq -r '.[].AllocID')
+
+nomad alloc exec $NGINX_PERSISTENT_ALLOC_ID /bin/bash -c 'touch /usr/share/nginx/html/index.html'
+```
+
+## Validate Data Persists
+Now that you have written a file to the persistent volume, let's validate the data exists once we delete the job and re-deploy it.
+
+Stop and remove the current NGINX job:
+```bash
+nomad job stop -purge nginx-persistent
+```
+
+Register the job again:
+```bash
+nomad job run nginx-persistent.nomad
+```
+
+Get the allocation ID and run an `ls` command to validate the file is there:
+```bash
+nomad alloc exec $NGINX_PERSISTENT_ALLOC_ID /bin/bash -c 'ls -l /usr/share/nginx/html/'
+total 0
+-rw-r--r-- 1 root root 0 Sep 14 13:31 index.html
 ```
 
 Next: [Clean Up](10-clean-up.md)

@@ -18,7 +18,7 @@ job "nginx-persistent-gce" {
     }
     
     service {
-      name     = "nginx"
+      name     = "nginx-persistent"
       port     = "http"
       provider = "nomad"
     }
