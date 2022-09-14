@@ -42,7 +42,7 @@ sudo systemctl restart nomad
 ```
 
 ## Setting up GCP Credentials
-> **Note:**: Run the following commands on the same machine you have used previously to run `gcloud` commands.
+> **Note:** Run the following commands on the same machine you have used previously to run `gcloud` commands.
 
 This driver requires a service account that has the following permissions and roles:
 ```

@@ -177,4 +177,17 @@ Job ID  Address            Tags  Node ID   Alloc ID
 nginx   10.240.0.20:27367  []    7869771c  b2c794f5
 ```
 
+## Interact with Containerd Directly
+If you are interested in interacting with Containerd directly, you can run the following commands on any of the client nodes. Containerd has the concept of namespaces and all images and containers are deployed in the `nomad` namespace.
+
+View container images:
+```bash
+sudo ctr --namespace nomad images ls
+```
+
+View running containers on the node:
+```bash
+sudo ctr --namespace nomad containers ls
+```
+
 Next: [Adding Persistent Storage](09-persistent-storage.md)
