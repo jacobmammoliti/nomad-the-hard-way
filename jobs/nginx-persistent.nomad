@@ -3,11 +3,11 @@ job "nginx-persistent-gce" {
 
   group "nginx-persistent-gce" {
     volume "nginx" {
-        type            = "csi"
-        read_only       = false
-        source          = "nginx-gcp"
-        attachment_mode = "file-system"
-        access_mode     = "single-node-writer"
+      type            = "csi"
+      read_only       = false
+      source          = "nginx"
+      attachment_mode = "file-system"
+      access_mode     = "single-node-writer"
     }
 
     network {

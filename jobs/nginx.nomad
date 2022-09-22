@@ -24,7 +24,7 @@ job "nginx" {
       driver = "containerd-driver"
 
       config {
-        image = "nginx"
+        image = "nginx:latest"
       }
     }
   }

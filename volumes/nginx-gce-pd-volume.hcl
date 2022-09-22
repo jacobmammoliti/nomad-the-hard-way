@@ -2,7 +2,7 @@ id           = "nginx" # ID as seen in nomad
 name         = "nginx" # Name as seen in GCP
 type         = "csi"
 plugin_id    = "gce-pd" # Needs to match the deployed plugin
-capacity_max = "1G"
+capacity_max = "2G"
 capacity_min = "1G"
 
 capability {
@@ -11,7 +11,7 @@ capability {
 }
 
 mount_options {
-  fs_type = "xfs"
+  fs_type     = "xfs"
   mount_flags = ["noatime",]
 }
 
@@ -25,6 +25,12 @@ topology_request {
     topology { 
       segments { 
         "topology.gke.io/zone" = "us-central1-a"
+      }
+      segments {
+        "topology.gke.io/zone" = "us-central1-b"
+      }
+      segments {
+        "topology.gke.io/zone" = "us-central1-c"
       }
     }
   }

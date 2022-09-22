@@ -20,8 +20,8 @@ sudo apt-get install -y unzip jq
 
 ### Download the Client Binaries
 ```bash
-export NOMAD_VERSION=$(curl -L -s https://api.releases.hashicorp.com/v1/releases/nomad | jq -r '.[0]'.version)
-export CNI_PLUGIN_VERSION=1.1.1
+export NOMAD_VERSION=1.3.5
+export CNI_PLUGIN_VERSION=1.0.0
 export CONTAINERD_DRIVER=0.9.3
 ```
 
@@ -114,7 +114,11 @@ cat <<EOF | sudo tee /opt/cni/config/10-bridge.conflist
           [{"subnet": "${CONTAINER_CIDR}"}]
         ],
       "routes": [{"dst": "0.0.0.0/0"}]
-    }
+      }
+    },
+    {
+      "type": "loopback",
+      "name": "lo"
     },
     {
       "type": "portmap",

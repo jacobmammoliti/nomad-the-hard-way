@@ -36,7 +36,7 @@ gcloud compute firewall-rules create nomad-the-hard-way-allow-external \
   --source-ranges 0.0.0.0/0
 ```
 
-> **Note:** An [external load balancer](https://cloud.google.com/load-balancing/docs/https) will be used to expose the Nomad servers to remove clients.
+> **Note:** An [external load balancer](https://cloud.google.com/load-balancing/docs/https) will be used to expose the Nomad servers to remote clients.
 
 List the firewall rules in the `nomad-the-hard-way` VPC network:
 ```bash
