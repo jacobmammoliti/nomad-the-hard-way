@@ -1,7 +1,7 @@
-job "nginx-persistent-gce" {
+job "nginx-persistent" {
   datacenters = ["dc1"]
 
-  group "nginx-persistent-gce" {
+  group "nginx-persistent" {
     volume "nginx" {
       type            = "csi"
       read_only       = false
