@@ -190,4 +190,19 @@ View running containers on the node:
 sudo ctr --namespace nomad containers ls
 ```
 
+View running tasks:
+```bash
+sudo ctr --namespace nomad task ls
+```
+
+Kill running task:
+```bash
+sudo ctr --namespace nomad task kill <TASK_NAME>
+```
+
+Delete a container:
+```bash
+sudo ctr --namespace nomad containers del <CONTAINER_NAME>
+```
+
 Next: [Adding Persistent Storage](09-persistent-storage.md)
