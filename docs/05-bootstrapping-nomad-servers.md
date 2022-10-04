@@ -10,6 +10,22 @@ gcloud compute ssh nomad-server-0
 ### Running commands in parallel with tmux
 If you are looking to run these commands in parallel, Kelsey Hightower shows [how to use tmux](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/01-prerequisites.md#running-commands-in-parallel-with-tmux) to do this.
 
+```bash
+tmux new -s servers
+
+Ctrl+b %
+
+Ctrl+b %
+
+Ctrl+b <- # move left
+
+Ctrl+b ^ # move up
+
+Ctrl+b :set synchronize-panes on
+
+Ctrl+b :set synchronize-panes off
+```
+
 ## Provision the Nomad Servers
 Install the OS dependencies:
 ```bash
@@ -20,7 +36,7 @@ sudo apt-get install -y unzip jq
 
 ### Download and Install the Nomad Binary
 ```bash
-export NOMAD_VERSION=$(curl -L -s https://api.releases.hashicorp.com/v1/releases/nomad | jq -r '.[0]'.version)
+export NOMAD_VERSION=1.3.5
 ```
 
 Download the official Nomad release binary:
